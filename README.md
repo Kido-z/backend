@@ -1,1 +1,1 @@
-# kidoz
+# se renseigner sur les bonnes pratiques du README et le remplir 
