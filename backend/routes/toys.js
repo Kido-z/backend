@@ -1,5 +1,7 @@
 const express = require('express');
 
+const Toy = require('../models/productModel')
+
 const router = express.Router();
 
 // GET all toys
