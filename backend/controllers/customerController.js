@@ -1,2 +1,2 @@
-const User = require('../models/customer');
+const user = require('../models/customer');
 
