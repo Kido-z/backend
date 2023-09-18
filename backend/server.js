@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+// Security middleware to handle HTTP requests from different origins 
 const cors = require('cors');
 const app = express(); // express app 
 const bodyParser = require('body-parser');
