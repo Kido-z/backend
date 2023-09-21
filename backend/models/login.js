@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 const loginSchema = mongoose.Schema ({
     email: { type: String, required: [true, "Votre addresse email est requise"], unique: true, },
     password: { type: String, required: [true, "Votre mot de passe est requise"], },
+    createdAt: { type: Date, default: new Date(), },
     phoneNumber: { type: String, required: true } // in case of forgotten password maybe 
 });
 

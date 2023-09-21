@@ -9,14 +9,14 @@ and returning a JSON response to indicate successful registration. */
 module.exports.Signup = async (req, res, next) => {
     try {
         // req.body recovers the data user
-      const { email, password, username, createdAt } = req.body;
+      const { email, password, createdAt } = req.body;
       // We check if the email is not already used 
       const existingUser = await login.findOne({ email });
       if (existingUser) {
         return res.json({ message: "L'utilisateur existe déjà" });
       }
       // Used the value of req.body to create a new user
-      const user = await login.create({ email, password, username, createdAt });
+      const user = await login.create({ email, password, createdAt });
       const token = createSecretToken(user._id);
       res.cookie("token", token, {
         withCredentials: true,
