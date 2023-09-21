@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express(); // express app 
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const loginRoutes = require('./routes/loginRoutes');
 const productRoutes = require('./routes/productRoutes');
 const categoryRoutes = require('./routes/categoryRoutes');
 const customerRoutes = require('./routes/customerRoutes');
@@ -18,7 +20,10 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 app.use(cors());
 app.use(express.json()); 
+app.use(cookieParser());
+
 // All routes 
+app.use('/', loginRoutes);
 app.use('/api/productRoutes', productRoutes);
 app.use('/api/categoryRoutes', categoryRoutes);
 app.use('/api/customerRoutes', customerRoutes);
