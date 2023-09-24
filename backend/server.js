@@ -1,11 +1,11 @@
+const bodyParser = require('body-parser');
 require('dotenv').config();
+const cookieParser = require("cookie-parser");
 const express = require('express');
 const mongoose = require('mongoose');
 // Security middleware to handle HTTP requests from different origins 
 const cors = require('cors');
 const app = express(); // express app 
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
 const loginRoutes = require('./routes/loginRoutes');
 const productRoutes = require('./routes/productRoutes');
 const categoryRoutes = require('./routes/categoryRoutes');
@@ -18,6 +18,7 @@ app.use((req, res, next) => {
 
 // Used bodyParser for handle the data on JSON
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 app.use(express.json()); 
 app.use(cookieParser());
