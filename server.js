@@ -3,6 +3,7 @@ require('dotenv').config();
 const cookieParser = require("cookie-parser");
 const express = require('express');
 const mongoose = require('mongoose');
+const { notFound, errorHandler } = require('./middlewares/errorHandler');
 // Security middleware to handle HTTP requests from different origins 
 const cors = require('cors');
 const app = express(); // express app 
@@ -28,6 +29,9 @@ app.use('/', loginRoutes);
 app.use('/api/productRoutes', productRoutes);
 app.use('/api/categoryRoutes', categoryRoutes);
 app.use('/api/customerRoutes', customerRoutes);
+
+app.use(notFound);
+app.use(errorHandler);
 
 // Connect to database
 mongoose.connect(process.env.MONGO_URI)
