@@ -1,4 +1,4 @@
-const user = require('../models/login');
+const user = require('../models/userModel');
 const { createSecretToken } = require('../config/secretToken');
 const { generateRefreshToken } = require('../config/refreshtoken');
 const asyncHandler = require('express-async-handler');

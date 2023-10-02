@@ -35,4 +35,4 @@ loginSchema.methods.createPasswordResetToken = async function () {
   return resettoken;
 };
 
-module.exports = mongoose.model('login', loginSchema);
+module.exports = mongoose.model('user', loginSchema);

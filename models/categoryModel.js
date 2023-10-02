@@ -7,5 +7,5 @@ const categorySchema = mongoose.Schema ({
     condition: { type: String, required: true }
 })
 
-module.exports = mongoose.model('category', categorySchema)
+module.exports = mongoose.model('categoryModel', categorySchema)
 
