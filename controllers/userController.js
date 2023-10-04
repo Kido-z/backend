@@ -41,6 +41,7 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
       firstname: findUser?.firstname,
       lastname: findUser?.lastname,
       email: findUser?.email,
+      phoneNumber: findUser?.phoneNumber,
       token: createSecretToken(findUser?._id),
     });
   } else {
@@ -58,6 +59,7 @@ const updatedUser = asyncHandler(async (req, res) => {
         firstname: req?.body?.firstname,
         lastname: req?.body?.lastname,
         email: req?.body?.email,
+        phoneNumber: req?.body?.phoneNumber,
       },
       {
         new: true,

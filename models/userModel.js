@@ -7,11 +7,14 @@ const loginSchema = mongoose.Schema ({
     firstname: { type : String, trim : true },
     lastname: { type : String, trim : true },
     email: { type: String, required: [true, "Votre addresse email est requise"], unique: true, },
+    phoneNumber: { type: String, required: true, unique: true, },
     password: { type: String, required: [true, "Votre mot de passe est requise"], },
     role: { type: String, default: "user" },
-    createdAt: { type: Date, default: new Date(), },
-    //phoneNumber: { type: String, required: true } // in case of forgotten password maybe 
-});
+  },
+  { 
+    timestamps: true,
+  }
+);
 
 // This code hash the password and save it before to send on BDD
 loginSchema.pre("save", async function (next) {
