@@ -1,0 +1,8 @@
+# Dependency directories
+node_modules/
+
+# dotenv environment
+.env
+
+# Mac system files
+.DS_Store
