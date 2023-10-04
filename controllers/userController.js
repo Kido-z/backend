@@ -1,11 +1,10 @@
-const user = require('../models/userModel');
+const User = require('../models/userModel');
 const { createSecretToken } = require('../config/secretToken');
 const { generateRefreshToken } = require('../config/refreshtoken');
 const asyncHandler = require('express-async-handler');
 const bcrypt = require('bcryptjs');
 
-// Create a User ----------------------------------------------
-
+/**  Create a User **/
 const createUser = asyncHandler(async (req, res) => {
   const email = req.body.email;
   const findUser = await user.findOne({ email: email });
@@ -18,14 +17,14 @@ const createUser = asyncHandler(async (req, res) => {
   }
 });
 
-// Login a user
+/** Login a user **/
 const loginUserCtrl = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   // check if user exists or not
-  const findUser = await user.findOne({ email });
+  const findUser = await User.findOne({ email });
   if (findUser && (await findUser.isPasswordMatched(password))) {
     /*const refreshToken = await generateRefreshToken(findUser?._id);
-     const updateuser = await user.findByIdAndUpdate(
+     const updateuser = await User.findByIdAndUpdate(
       findUser.id,
       {
         refreshToken: refreshToken,
@@ -49,12 +48,12 @@ const loginUserCtrl = asyncHandler(async (req, res) => {
   }
 });
 
-// Update a user
+/** Update a user **/
 const updatedUser = asyncHandler(async (req, res) => {
-  const { id } = req.params;
+  const { _id } = req.user;
   try {
-    const updatedUser = await user.findByIdAndUpdate(
-      id,
+    const updatedUser = await User.findByIdAndUpdate(
+      _id,
       {
         firstname: req?.body?.firstname,
         lastname: req?.body?.lastname,
@@ -74,20 +73,20 @@ const updatedUser = asyncHandler(async (req, res) => {
 // Get all users
 const getallUser = asyncHandler(async (req, res) => {
   try {
-    const getUsers = await user.find();
+    const getUsers = await User.find();
     res.json(getUsers);
   } catch (error) {
     throw new Error(error);
   }
 });
 
-// Get a single user
+/** Get a single user **/
 const getaUser = asyncHandler(async (req, res) => {
   console.log(req.params);
   const { id } = req.params;
 
   try {
-    const getaUser = await user.findById(id);
+    const getaUser = await User.findById(id);
     res.json({
       getaUser,
     });
@@ -96,13 +95,13 @@ const getaUser = asyncHandler(async (req, res) => {
   }
 });
 
-// Get a single user (delete a user)
+/** Get a single user (delete a user) **/
 const deleteaUser = asyncHandler(async (req, res) => {
   console.log(req.params);
   const { id } = req.params;
 
   try {
-    const deleteaUser = await user.findByIdAndDelete(id);
+    const deleteaUser = await User.findByIdAndDelete(id);
     res.json({
       deleteaUser,
     });
