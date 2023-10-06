@@ -10,6 +10,8 @@ const loginSchema = mongoose.Schema ({
     phoneNumber: { type: String, required: true, unique: true, },
     password: { type: String, required: [true, "Votre mot de passe est requise"], },
     role: { type: String, default: "user" },
+    address: { type: String, },
+    refreshToken: { type: String, },
   },
   { 
     timestamps: true,
