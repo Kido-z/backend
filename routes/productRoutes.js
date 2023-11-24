@@ -1,14 +1,18 @@
 const express = require('express');
 const router = express.Router();
-
-// GET all products
-router.get('/', (req, res, next) => {
-    res.json({mssg: 'GET all products'});
-});
-
-/* // GET a single product
-router.get('/:id', (req, res) => {
-    res.json({mssg: 'GET a single product'})
-}); */
+const {
+    createProduct,
+    getaProduct,
+    getAllProduct,
+    updateProduct,
+    deleteProduct,
+  } = require('../controllers/productController');
+  //const { authMiddleware } = require('../middlewares/authMiddleware');
+  
+  router.post("/", createProduct);
+  router.put("/:id", updateProduct);
+  router.get("/:id", getaProduct);
+  router.get("/", getAllProduct); 
+  router.delete("/:id", deleteProduct);
 
 module.exports = router;

@@ -9,8 +9,6 @@ const cors = require('cors');
 const app = express(); // express app 
 const loginRoutes = require('./routes/loginRoutes');
 const productRoutes = require('./routes/productRoutes');
-const categoryRoutes = require('./routes/categoryRoutes');
-const customerRoutes = require('./routes/customerRoutes');
 
 app.use((req, res, next) => {
     console.log('Requete reçu'); //console.log(req.path, req.method)
@@ -27,8 +25,6 @@ app.use(cookieParser());
 // All routes 
 app.use('/', loginRoutes);
 app.use('/api/productRoutes', productRoutes);
-app.use('/api/categoryRoutes', categoryRoutes);
-app.use('/api/customerRoutes', customerRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
